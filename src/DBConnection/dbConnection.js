@@ -6,6 +6,7 @@ import { DB_Name } from "../constant.js";
 const DataBaseConnection= async ()=>{
 
     try {
+        // console.log(`${EnvConfig.ENV_MONGODB_STRING}/${DB_Name}`);
         const DbInstance= await mongoose.connect(`${EnvConfig.ENV_MONGODB_STRING}/${DB_Name}`);
 //  S.B:Dont use special character in mongo db string password if use make sure this special character is encoded in base64.
          
