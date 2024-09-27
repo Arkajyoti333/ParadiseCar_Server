@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { data_limits } from "./constant.js";
+import Globalerrorhandler from "./utils/GlobalErrorhandler.js";
 
 
 
@@ -40,9 +41,7 @@ app.use(cookieParser()) //cookiemiddleware
 app.use(express.static("public"));
 
 
-
-
- // register Routes
+ // register home Routes
 
 app.get("/",(req,res)=>{
     res.json({
@@ -50,6 +49,15 @@ app.get("/",(req,res)=>{
     })
 })
 
+
+// register custom middlewares 
+
+// app.use("/api/vi/userAdmin");
+// app.use("/api/vi/userData");
+
+
+//global error handler middlewaes
+app.use(Globalerrorhandler)
 
 
 export default app;

@@ -1,4 +1,4 @@
-import EnvConfig from "../config/Config";
+import EnvConfig from "../config/Config.js";
 
 const Globalerrorhandler=(err,req,res,next)=>{
     const statuCode=err.statuCode||500;
