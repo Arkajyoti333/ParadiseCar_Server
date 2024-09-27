@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { data_limits } from "./constant.js";
 import Globalerrorhandler from "./utils/GlobalErrorhandler.js";
+import UserDataRouter from "./routes/userFromData.routes.js";
+import adminRouter from "./routes/admin.routes.js";
 
 
 
@@ -52,8 +54,8 @@ app.get("/",(req,res)=>{
 
 // register custom middlewares 
 
-// app.use("/api/vi/userAdmin");
-// app.use("/api/vi/userData");
+app.use("/api/vi/userAdmin",adminRouter);
+app.use("/api/vi/userData",UserDataRouter);
 
 
 //global error handler middlewaes
