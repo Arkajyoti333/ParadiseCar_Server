@@ -9,6 +9,10 @@ const contactDataController = async (req, res, next) => {
   try {
     const { fullName, email, mobileNum, contactMessage } = req.body;
 
+    if (!fullName || !email || !mobileNum || !contactMessage) {
+      const error=createHttpError(403,"All data is required .")
+      return next(error);
+    } 
     const newContactDetails = await ContactDb.create({
       Name: fullName,
       email,
@@ -20,7 +24,7 @@ const contactDataController = async (req, res, next) => {
       id: newContactDetails._id,
     });
   } catch (error) {
-    return next(createHttpError(413, " Payload Submission Faild. "));
+    return next(createHttpError(413, " Contact Payload Submission Faild. "));
   }
 };
 
