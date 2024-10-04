@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { contactDataController } from "../controller/userData.controller.js";
+import { contactDataController,BookDataController } from "../controller/userData.controller.js";
 
 
 const UserDataRouter=Router();
@@ -12,7 +12,8 @@ UserDataRouter.get("/",(req,res)=>{
 })
 
 
-UserDataRouter.post("/contactFrom",contactDataController)
+UserDataRouter.post("/contactFrom",contactDataController);
+UserDataRouter.post("/bookData",BookDataController);
 
 
 
