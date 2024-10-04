@@ -1,8 +1,8 @@
 import app from "./app.js"
-import {constant_Port, DB_Name} from "./constant.js"
+import {constant_Port} from "./constant.js"
 import EnvConfig from "./config/Config.js"; //import Env data
 import DataBaseConnection from "./DBConnection/dbConnection.js";
-import { Db } from "mongodb";
+
 
 
 const port= EnvConfig.ENV_PORT||constant_Port;

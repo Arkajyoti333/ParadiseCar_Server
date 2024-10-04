@@ -59,7 +59,7 @@ app.use("/api/vi/userData",UserDataRouter);
 
 
 //global error handler middlewaes
-app.use(Globalerrorhandler)
+app.use(Globalerrorhandler);
 
 
 export default app;
