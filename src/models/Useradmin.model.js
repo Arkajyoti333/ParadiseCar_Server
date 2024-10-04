@@ -25,7 +25,10 @@ const userAdminSchema = mongoose.Schema(
       require: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+}
+
 );
 
 const UserAdmin = mongoose.model("UserAdmin", userAdminSchema);

@@ -22,8 +22,9 @@ const contactschema=mongoose.Schema(
         }
     },
     {
-        timeStamp:true,
+        timestamps: true,
     }
+    
 )
 
 

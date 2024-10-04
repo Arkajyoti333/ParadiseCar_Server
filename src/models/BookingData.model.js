@@ -27,20 +27,22 @@ const bookingSchema=mongoose.Schema(
             type:String,
             require:true,
         },
-        TripType:{
+        tripType:{
             type:String,
             require:true,
         },
         AirportTriptype:{
-            type:true,
+            type:String,
         }
 
 
     },
-{
- timestamp:true, 
-})
+    {
+        timestamps: true,
+    }
+    
+)
 
-const BookingData=mongoose.model("bookingData",bookingSchema);
+const bookingData=mongoose.model("bookingData",bookingSchema);
 
-export default BookingData;
+export default bookingData;
