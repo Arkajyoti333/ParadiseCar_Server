@@ -9,6 +9,7 @@ const ___envConfig={
     ENV_MONGODB_STRING:process.env.MONGODB_STRING,
     ENV_CORS_ORIGIN:process.env.CORS_ORIGIN,
     ENV_APP_MOOD:process.env.APP_MOOD,
+    ENV_JWT_SECRET:process.env.JWT_SECRET,
 }
 const EnvConfig=Object.freeze(___envConfig);
   

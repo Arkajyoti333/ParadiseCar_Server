@@ -8,9 +8,9 @@ const userAdminSchema = mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      require: true,
+      default:true,
     },
-    mobile_No: {
+    mobileNumber: {
       type: Number,
       unique: true,
       require: [true, "Mobile Number is required"],
@@ -24,6 +24,18 @@ const userAdminSchema = mongoose.Schema(
       type: String,
       require: true,
     },
+    lastLogin: {
+			type: Date,
+			default: Date.now,
+		},
+    isVerified: {
+			type: Boolean,
+			default: false,
+		},
+    resetPasswordToken: String,
+		resetPasswordExpiresAt: Date,
+		verificationToken: String,
+		verificationTokenExpiresAt: Date,
   },
   {
     timestamps: true,
