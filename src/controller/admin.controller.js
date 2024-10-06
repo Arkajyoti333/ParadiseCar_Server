@@ -2,6 +2,7 @@ import createHttpError from "http-errors";
 import UserAdmin from "../models/Useradmin.model.js";
 import bcrypt from "bcrypt";
 import generateVerificationToken from "../utils/generateVerificationToken.js";
+import { sendVerificationMail } from "../MailServices/Email.services.js";
 
 
 
@@ -30,7 +31,7 @@ const hasedPassword = await bcrypt.hash(password, 10);
 
 const verificationToken= Math.floor(100000 + Math.random() * 900000).toString();
 
-const registerAdmin = new UserAdmin({
+const registerAdmin = new UserAdmin({ // create new UserAdmin Instance
   userName,
   mobileNumber,
   email,
@@ -43,7 +44,12 @@ await registerAdmin.save(); //saving user documents in data base
 
 
 // jwt token generation and saved in cookies 
- await generateVerificationToken(res,registerAdmin._id);
+await generateVerificationToken(res,registerAdmin._id);
+
+
+
+await sendVerificationMail(registerAdmin.email,verificationToken); //sending verifaction mail
+
 
 
 res.status(201).json({
@@ -65,7 +71,27 @@ res.status(201).json({
 }
 
 
+const VerifyAuthantication= async(req,res,next)=>{
+  try {
+    
+  } catch (error) {
+    console.log("Error Occures Verify Auth Token.",error);
+    return next(error);
+  }
+}
+
+
+const LoggedIn=async(req,res,next)=>{
+
+}
+
+const LoggedOut= async(req,res,next)=>{
+
+}
+const ForgotPassword=async(req,res,next)=>{
+
+}
 
 
 
-export {RegisterAdmin};
+export {RegisterAdmin,LoggedOut,LoggedIn,ForgotPassword};
