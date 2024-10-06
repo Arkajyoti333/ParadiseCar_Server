@@ -54,8 +54,8 @@ app.get("/",(req,res)=>{
 
 // register custom middlewares 
 
-app.use("/api/vi/userAdmin",adminRouter);
-app.use("/api/vi/userData",UserDataRouter);
+app.use("/api/v1/userAdmin",adminRouter);
+app.use("/api/v1/userData",UserDataRouter);
 
 
 //global error handler middlewaes
