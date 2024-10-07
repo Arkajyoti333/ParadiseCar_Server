@@ -3,7 +3,7 @@
  import {VERIFICATION_EMAIL_TEMPLATE} from "./email.tamplate.services.js"
 
 
- const sendVerificationMail=async(email,verificationCode)=>{
+ const sendVerificationMail=async(email,verificationCode,next)=>{
 
     try {
         
@@ -16,6 +16,7 @@
             category: "Verification mail ....",
         })
         console.log("Email sent successfully", mailResponse);
+        return mailResponse;
 
     } catch (error) {
         console.log("Error occures Sending mail: "+error);

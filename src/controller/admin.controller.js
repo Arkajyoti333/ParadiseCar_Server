@@ -48,7 +48,7 @@ await generateVerificationToken(res,registerAdmin._id);
 
 
 
-await sendVerificationMail(registerAdmin.email,verificationToken); //sending verifaction mail
+const mailRes=await sendVerificationMail(registerAdmin.email,verificationToken,next); //sending verifaction mail
 
 
 
@@ -56,6 +56,7 @@ res.status(201).json({
     message:"user Successfully created !",
     ...registerAdmin._doc,
     password:undefined,
+   mailresponse: mailRes.success?mailRes:{success:false},
 })
 
 } catch (error) {

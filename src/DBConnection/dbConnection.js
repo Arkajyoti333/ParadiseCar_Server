@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 import EnvConfig from "../config/Config.js";
 import { DB_Name } from "../constant.js";
 
-
-
-
-
-
-
 const DataBaseConnection = async () => {
   try {
     // console.log(`${EnvConfig.ENV_MONGODB_STRING}/${DB_Name}`);
