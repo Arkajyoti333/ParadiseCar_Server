@@ -35,9 +35,9 @@ app.use(cors({
     origin:"*",
     credentials:true,
 }))
-app.use(express.urlencoded({
+app.use(express.urlencoded({ // For parsing application/x-www-form-urlencoded
     limit:data_limits,
-    credentials:true,
+    extended: true
 }));
 app.use(cookieParser()) //cookiemiddleware
 app.use(express.static("public"));
