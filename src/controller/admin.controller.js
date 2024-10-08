@@ -72,12 +72,12 @@ res.status(201).json({
 const VerifyAuthentication= async(req,res,next)=>{
   
   const {code}=req.body;
-  const { email } = req.params;
+  // const { email } = req.params;
 
 
   try {
         const  UserFind= await UserAdmin.findOne({
-         email,
+        //  email,
           verificationToken:code,
           verificationTokenExpiresAt: { $gt: Date.now() }  // $gt operator checks if the verificationTokenExpiresAt (expiration date) is greater than the current time (Date.now()). If it is, the token has not expired.
         });
@@ -174,5 +174,43 @@ const ForgotPassword=async(req,res,next)=>{
 }
 
 
+const checkAuth=async(req,res,next)=>{
 
-export {RegisterAdmin,VerifyAuthentication,LoggedOut,LoggedIn,ForgotPassword};
+  const {userID}=req.body;
+  
+//  console.log(req);
+ 
+  if(!userID){
+    const error=createHttpError(404,"User id Not found");
+    return next(error);
+  }
+
+  try { 
+    // console.log(userID);
+    // const authUser= await UserAdmin.findOne({userId}).select("-password");
+    const authUser= await UserAdmin.findOne({_id:userID});
+     
+    if(!authUser){
+      const error =createHttpError(403,"Unautarized : User  not found !");
+      return next(error);
+    }
+
+    res.status(200).json({
+      success:true,
+      message:"User successfuly Retrive From DataBase !",
+      ...authUser._doc,
+      password:undefined,
+    })
+
+  } catch (error) {
+    
+    console.log("Error  Occures check Authantication !",error);
+    return next(error)
+  }
+
+   
+}
+
+
+
+export {RegisterAdmin,VerifyAuthentication,LoggedOut,LoggedIn,ForgotPassword,checkAuth};
