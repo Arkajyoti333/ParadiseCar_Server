@@ -9,8 +9,8 @@ const mailTrapClient= new MailtrapClient({
 });
 
 const sender = {
-  email: "hello@demomailtrap.com",
-  name: "Arkajyoti kundu",
+  email: "hello@paradisecar.in",
+  name: "ParaDise Car",
 };
 
 
