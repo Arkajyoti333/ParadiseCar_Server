@@ -1,5 +1,6 @@
 import express from "express";
-import {  LoggedIn, LoggedOut, RegisterAdmin, VerifyAuthentication } from "../controller/admin.controller.js";
+import {  checkAuth, LoggedIn, LoggedOut, RegisterAdmin, VerifyAuthentication } from "../controller/admin.controller.js";
+import { verifyJwtToken } from "../middleWares/protected.Admin.js";
 
 
 const adminRouter=express.Router(); //create router object
@@ -7,17 +8,20 @@ const adminRouter=express.Router(); //create router object
 
 adminRouter.get("/",(req,res)=>{
     res.json({
-        mesage:"response come from Admin Router"
+        mesage:"Response come from Admin Router"
     })
 })
 
-adminRouter.post("/signUp",RegisterAdmin);
-adminRouter.post("/loggedIn",LoggedIn);
-adminRouter.post("/logOut",LoggedOut);
-adminRouter.post("/verify-email/:email", VerifyAuthentication);
+// Authantication Route . 
+
+adminRouter.post("/auth/signUp",RegisterAdmin);
+adminRouter.post("/auth/loggedIn",LoggedIn);
+adminRouter.post("/auth/logOut",LoggedOut);
+adminRouter.post("/auth/verify-email", VerifyAuthentication);
 
 
-
+// Protected Route .
+adminRouter.get("/auth/check-auth",verifyJwtToken,checkAuth)
 
 
 
