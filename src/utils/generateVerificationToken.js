@@ -1,9 +1,9 @@
 import JWT from "jsonwebtoken";
 import EnvConfig from "../config/Config.js";
 
-const generateVerificationToken= async (res,id)=>{
+const generateVerificationToken= async (res,userId)=>{
 
-    const jwtToken = JWT.sign({ id }, EnvConfig.ENV_JWT_SECRET, { // sign jwt token
+    const jwtToken = JWT.sign({ userId }, EnvConfig.ENV_JWT_SECRET, { // sign jwt token
         expiresIn: '30d'
       });
       
