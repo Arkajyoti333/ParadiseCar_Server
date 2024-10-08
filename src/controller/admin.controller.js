@@ -1,6 +1,7 @@
 import createHttpError from "http-errors";
-import UserAdmin from "../models/Useradmin.model.js";
 import bcrypt from "bcrypt";
+
+import UserAdmin from "../models/Useradmin.model.js";
 import generateVerificationToken from "../utils/generateVerificationToken.js";
 import { sendVerificationMail } from "../MailServices/Email.services.js";
 
@@ -108,10 +109,64 @@ const VerifyAuthentication= async(req,res,next)=>{
 
 
 const LoggedIn=async(req,res,next)=>{
+   
+  const {email,mobileNumber,password}=req.body;
+
+  try {
+
+    if(!email || !mobileNumber || !password){
+      const error= createHttpError(401,"Unauthorized ! all field are required !");
+      return next(error);
+    }
+
+    const LoggedUser= await UserAdmin.findOne({
+      email,
+      mobileNumber,
+    });
+
+    if(!LoggedUser){
+      const error=createHttpError(401,"Invalid creadential ,User not found !");
+      return next(error);
+    }
+
+    const isMatched=bcrypt.compare(password,LoggedUser.password);
+
+    if(!isMatched){
+      const error =createHttpError(401,"Invalid creadntial , password not matched !");
+      return next(error);
+    }
+     
+
+    LoggedUser.lastLogin=Date.now();
+
+    generateVerificationToken(res,LoggedUser._id);
+
+    await LoggedUser.save();
+
+    res.status(203).json({
+      success:true,
+      ...LoggedUser._doc,
+      password:undefined,
+    })
+
+    
+  } catch (error) {
+    console.log("Errors occures during Logged in !",error);
+    return next(error);
+    
+  }
 
 }
 
+
 const LoggedOut= async(req,res,next)=>{
+ 
+ res.clearCookie("AuthToken");
+ res.status(201).json({
+  success:true,
+  message:"user successfuly Logged out !",
+  statuCode:201,
+ })
 
 }
 const ForgotPassword=async(req,res,next)=>{
