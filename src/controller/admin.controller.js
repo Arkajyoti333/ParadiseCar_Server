@@ -46,11 +46,7 @@ await registerAdmin.save(); //saving user documents in data base
 // jwt token generation and saved in cookies 
 await generateVerificationToken(res,registerAdmin._id);
 
-
-
 const mailRes=await sendVerificationMail(registerAdmin.email,verificationToken,next); //sending verifaction mail
-
-
 
 res.status(201).json({
     message:"user Successfully created !",
@@ -72,12 +68,41 @@ res.status(201).json({
 }
 
 
-const VerifyAuthantication= async(req,res,next)=>{
+const VerifyAuthentication= async(req,res,next)=>{
+  
+  const {code}=req.body;
+  const { email } = req.params;
+
+
   try {
+        const  UserFind= await UserAdmin.findOne({
+         email,
+          verificationToken:code,
+          verificationTokenExpiresAt: { $gt: Date.now() }  // $gt operator checks if the verificationTokenExpiresAt (expiration date) is greater than the current time (Date.now()). If it is, the token has not expired.
+        });
+
+        if(!UserFind){
+          const error =createHttpError(401,"Invalid Verification Code !")
+          return next(error);
+        }
+    
+        UserFind.isVerified=true;
+        UserFind.verificationToken=undefined;
+        UserFind.verificationTokenExpiresAt=undefined;
+     
+      await UserFind.save();
+
+      res.status(203).json({
+        message:"user successfuly Verified his account !",
+        ...UserFind._doc,
+        password:undefined,
+
+     })
     
   } catch (error) {
-    console.log("Error Occures Verify Auth Token.",error);
+    console.log("Error Occures Verification Email  code.",error);
     return next(error);
+
   }
 }
 
@@ -95,4 +120,4 @@ const ForgotPassword=async(req,res,next)=>{
 
 
 
-export {RegisterAdmin,LoggedOut,LoggedIn,ForgotPassword};
+export {RegisterAdmin,VerifyAuthentication,LoggedOut,LoggedIn,ForgotPassword};

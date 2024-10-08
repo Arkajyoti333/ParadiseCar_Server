@@ -6,9 +6,9 @@ const userAdminSchema = mongoose.Schema(
       type: String,
       require: true,
     },
-    isAdmin: {
+    isSuperAdmin: {
       type: Boolean,
-      default:true,
+      default:false,
     },
     mobileNumber: {
       type: Number,
@@ -32,10 +32,12 @@ const userAdminSchema = mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+    verificationToken:{
+      type:String,
+    },
+		verificationTokenExpiresAt: Date,
     resetPasswordToken: String,
 		resetPasswordExpiresAt: Date,
-		verificationToken: String,
-		verificationTokenExpiresAt: Date,
   },
   {
     timestamps: true,

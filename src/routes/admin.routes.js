@@ -1,5 +1,5 @@
 import express from "express";
-import {  RegisterAdmin } from "../controller/admin.controller.js";
+import {  RegisterAdmin, VerifyAuthentication } from "../controller/admin.controller.js";
 
 
 const adminRouter=express.Router(); //create router object
@@ -11,7 +11,10 @@ adminRouter.get("/",(req,res)=>{
     })
 })
 
-adminRouter.post("/signUp",RegisterAdmin)
+adminRouter.post("/signUp",RegisterAdmin);
+adminRouter.post("/verify-email/:email", VerifyAuthentication);
+
+
 
 
 
