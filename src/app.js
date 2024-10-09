@@ -5,6 +5,7 @@ import { data_limits } from "./constant.js";
 import Globalerrorhandler from "./utils/GlobalErrorhandler.js";
 import UserDataRouter from "./routes/userFromData.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import EnvConfig from "./config/Config.js";
 
 
 
@@ -32,7 +33,7 @@ app.use(express.json({
 }))
 
 app.use(cors({
-    origin:"*",
+    origin:EnvConfig.ENV_CORS_ORIGIN,
     credentials:true,
 }))
 app.use(express.urlencoded({ // For parsing application/x-www-form-urlencoded

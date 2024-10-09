@@ -1,5 +1,5 @@
 import express from "express";
-import {  checkAuth, LoggedIn, LoggedOut, RegisterAdmin, VerifyAuthentication } from "../controller/admin.controller.js";
+import {  checkAuth, LoggedIn, LoggedOut, RegisterAdmin, VerifyAuthentication } from "../controller/adminAuth.controller.js";
 import { verifyJwtToken } from "../middleWares/protected.Admin.js";
 
 
@@ -21,7 +21,10 @@ adminRouter.post("/auth/verify-email", VerifyAuthentication);
 
 
 // Protected Route .
-adminRouter.get("/auth/check-auth",verifyJwtToken,checkAuth)
+adminRouter.get("/auth/check-auth",verifyJwtToken,checkAuth);
+
+//protected Route FoR Retrive data
+
 
 
 

@@ -196,8 +196,13 @@ const checkAuth=async(req,res,next)=>{
       const error =createHttpError(403,"Unautarized : User  not found !");
       return next(error);
     }
+ 
+     
+    // const isAdminVerified=authUser.isVerified;
+    
 
     res.status(200).json({
+      isAdminVerified,
       success:true,
       message:"User successfuly Retrive From DataBase !",
       ...authUser._doc,
