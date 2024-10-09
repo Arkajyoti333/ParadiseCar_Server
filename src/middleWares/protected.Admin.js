@@ -24,9 +24,12 @@ const verifyJwtToken= async (req,res,next)=>{
       
         // console.log("User id is ",decode.userId);
         
+        req.user = { userID: decode.userId };  
 
-        req.body.userID=decode.userId;
 
+        // req.query.userID=decode.userId;
+
+//      passing the next function 
 
         next();
         
