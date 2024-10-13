@@ -46,6 +46,7 @@ app.use(express.static("public"));
 
  // register home Routes
 
+ 
 app.get("/",(req,res)=>{
     res.json({
         message:"Wellcome to Home !"
