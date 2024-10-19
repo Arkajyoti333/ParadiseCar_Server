@@ -7,8 +7,12 @@ const verifyJwtToken= async (req,res,next)=>{
   
     const authCookieToken=req.cookies.AuthToken;
 
+    // console.log("authCookieToken: ");
+    // console.log(req.cookies);
+    
+
     try {
-            
+        
 
         if(!authCookieToken){
             const error=createHttpError(401,"Unautharized: Authantication token not found !");

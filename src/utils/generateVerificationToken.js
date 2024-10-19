@@ -9,7 +9,7 @@ const generateVerificationToken= async (res,userId)=>{
       
       const isProduction=EnvConfig.ENV_APP_MOOD==="production";
 
-    res.cookie("AuthToken",jwtToken,{  // save cookie in 
+    await res.cookie("AuthToken",jwtToken,{  // save cookie in 
         maxAge:30*24*60*60*1000,
         httpOnly:true,
         secure:isProduction,

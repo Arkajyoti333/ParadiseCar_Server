@@ -17,7 +17,6 @@ import {
 
 
 
-
      const adminRouter=express.Router(); //create router object
 
 
