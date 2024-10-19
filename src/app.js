@@ -34,7 +34,7 @@ app.use(express.json({
 
 app.use(cors({
     origin:EnvConfig.ENV_CORS_ORIGIN,
-    credentials:true,
+    credentials: true // Allow sending cookies
 }))
 app.use(express.urlencoded({ // For parsing application/x-www-form-urlencoded
     limit:data_limits,
