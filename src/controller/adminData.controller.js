@@ -63,7 +63,7 @@ const ContactData=async (req,res,next)=>{
 
     //sequential execution
 
-    const [isAdmin,contactResponse]=await promise.all([
+    const [isAdmin,contactResponse]=await Promise.all([
         UserAdmin.findOne({ _id: userID, isVerified: true }).select("-password"),
         ContactDb.find(),
 
