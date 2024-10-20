@@ -17,7 +17,8 @@ const BookData=async(req,res,next)=>{
     }
         try {
 
-                    //sequential execution
+            
+                    //  sequential execution
 
             // Run both queries in parallel using Promise.all
         // const [isAdmin, bookingResponse] = await Promise.all([
