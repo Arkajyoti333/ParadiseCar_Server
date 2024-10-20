@@ -54,27 +54,40 @@ const BookData=async(req,res,next)=>{
 
 const ContactData=async (req,res,next)=>{
     
+    
     const { userID } = req.user; 
+   
+    // console.log("Test case 1 passed");
+    
     if(!userID){
         const error = createHttpError(401, "Unauthorized: User ID is missing in the request.");
         return next(error);
     }
-  try {
 
-    //sequential execution
-
-    const [isAdmin,contactResponse]=await Promise.all([
-        UserAdmin.findOne({ _id: userID, isVerified: true }).select("-password"),
-        ContactDb.find(),
-
-    ])
-
-     if(!isAdmin){
-        const err = createHttpError(401, "Unauthorized: Credentials not found or user not verified!");
-        return(next(err));
-     }
-     res.status(200).json(contactResponse);
+    // console.log("Test case 2 passed");
     
+    try {
+        
+        //sequential execution
+        
+        // const [isAdmin,contactResponse]=await Promise.all([
+            //     UserAdmin.findOne({ _id: userID, isVerified: true }).select("-password"),
+            //     ContactDb.find(),
+            
+            // ])
+            const [isAdmin,contactResponse]=await Promise.all([
+                UserAdmin.findOne({ _id: userID,  }).select("-password"),
+                ContactDb.find(),
+                
+            ])
+            
+            // console.log("Test case 3 passed");
+            if(!isAdmin){
+                const err = createHttpError(401, "Unauthorized: Credentials not found or user not verified!");
+                return(next(err));
+            }
+            res.status(200).json(contactResponse);
+            
   } catch (error) {
     console.error("Error occurred while retrieving booking data in Admin controller:", error);
     const err=createHttpError(500, "Internal Server Error: Unable to retrieve contact data.")
