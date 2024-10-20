@@ -13,7 +13,7 @@ const generateVerificationToken= async (res,userId)=>{
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         httpOnly: true,
         secure: isProduction, 
-        sameSite: "None", 
+        sameSite: "strict", 
       });
       
 
