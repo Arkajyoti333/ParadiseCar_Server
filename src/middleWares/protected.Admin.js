@@ -7,8 +7,8 @@ const verifyJwtToken= async (req,res,next)=>{
   
     const authCookieToken=req.cookies.AuthToken;
 
-    // console.log("authCookieToken: ");
-    // console.log(req.cookies);
+    console.log("authCookieToken: ");
+    console.log(req.cookies);
     
 
     try {
