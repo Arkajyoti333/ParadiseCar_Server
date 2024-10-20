@@ -16,7 +16,7 @@ DataBaseConnection()
     app.listen(port,()=>{
 
     
-        console.log(`server is running : http://url${port}`);
+        console.log(`server is running : http://url:${port}`);
     })
 })
 .catch((Error)=>{

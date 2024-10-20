@@ -8,14 +8,14 @@ const generateVerificationToken= async (res,userId)=>{
       });
       
       const isProduction=EnvConfig.ENV_APP_MOOD==="production";
+console.log("isProduction:",isProduction);
 
-    await res.cookie("AuthToken",jwtToken,{  // save cookie in 
-        maxAge:30*24*60*60*1000,
-        httpOnly:true,
-        secure:isProduction,
-        sameSite:"strict",
-
-    })
+      await res.cookie("AuthToken", jwtToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        httpOnly: true,
+        secure: isProduction, 
+        sameSite: isProduction ? "None" : "Lax", // Use "None" for cross-site, "Lax" for same-site but some flexibility
+      });
 
 } 
 
