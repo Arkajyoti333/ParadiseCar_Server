@@ -7,15 +7,15 @@ const generateVerificationToken= async (res,userId)=>{
         expiresIn: '30d'
       });
       
-      const isProduction=EnvConfig.ENV_APP_MOOD==="production";
-console.log("isProduction:",isProduction);
+      const isProduction = EnvConfig.ENV_APP_MOOD === "production";
 
       await res.cookie("AuthToken", jwtToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         httpOnly: true,
         secure: isProduction, 
-        sameSite: isProduction ? "None" : "Lax", // Use "None" for cross-site, "Lax" for same-site but some flexibility
+        sameSite: "None", 
       });
+      
 
 } 
 
