@@ -10,10 +10,10 @@ const generateVerificationToken= async (res,userId)=>{
       const isProduction = EnvConfig.ENV_APP_MOOD === "production";
 
       await res.cookie("AuthToken", jwtToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        maxAge: 30 * 24 * 60 * 60 * 1000, 
         httpOnly: true,
-        secure: isProduction, 
-        sameSite: "strict", 
+        secure: isProduction,  
+        sameSite: isProduction ? "None" : "Strict", 
       });
       
 
