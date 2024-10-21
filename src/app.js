@@ -32,9 +32,9 @@ app.use(express.json({
     limit:data_limits,
 }))
 
-// origin:EnvConfig.ENV_CORS_ORIGIN,
 app.use(cors({
-    origin: 'https://paradisecar-admin.netlify.app',  
+     
+    origin:EnvConfig.ENV_CORS_ORIGIN,
     credentials: true,                
   }));
 app.use(express.urlencoded({ // For parsing application/x-www-form-urlencoded
