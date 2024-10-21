@@ -27,6 +27,7 @@ adminRouter.get("/",(req,res)=>{
 })
 
 
+
 // Authantication Route . 
 
 adminRouter.post("/auth/signUp",RegisterAdmin);
