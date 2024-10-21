@@ -34,7 +34,7 @@ app.use(express.json({
 
 // origin:EnvConfig.ENV_CORS_ORIGIN,
 app.use(cors({
-    origin: 'http://localhost:5173',  
+    origin: 'https://paradisecar-admin.netlify.app',  
     credentials: true,                
   }));
 app.use(express.urlencoded({ // For parsing application/x-www-form-urlencoded
