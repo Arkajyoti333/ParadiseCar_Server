@@ -112,9 +112,9 @@ const LoggedIn=async(req,res,next)=>{
    
   const {email,mobileNumber,password}=req.body;
 
-  console.log("Email :",email);
-  console.log("mobileNumber :",mobileNumber);
-  console.log("password :",password);
+  // console.log("Email :",email);
+  // console.log("mobileNumber :",mobileNumber);
+  // console.log("password :",password);
   
 
   try {
