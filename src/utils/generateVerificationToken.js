@@ -14,9 +14,9 @@ const generateVerificationToken= async (res,userId)=>{
       await res.cookie("AuthToken", jwtToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         httpOnly: true,
-        // secure: isProduction, 
-        // sameSite: isProduction ? 'None' : 'Lax', 
-        // domain: isProduction ? 'paradisecar-server-deploy.onrender.com' : 'localhost', // Set domain
+        secure: isProduction, 
+        sameSite: isProduction ? 'None' : 'Lax', 
+        domain: isProduction ? 'paradisecar-server-deploy.onrender.com' : 'localhost', // Set domain
         path: '/',  // Ensure the cookie is available for all routes
       });
       
