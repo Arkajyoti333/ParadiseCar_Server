@@ -25,7 +25,9 @@ const verifyJwtToken= async (req,res,next)=>{
             const error=createHttpError(401,"Jwt return false value !");
            return next(error);
         }
-      
+       
+        console.log("decode", decode);
+        
         // console.log("User id is ",decode.userId);
         
         req.user = { userID: decode.userId };  
